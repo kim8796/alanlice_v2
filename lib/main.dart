@@ -1,16 +1,29 @@
 import 'package:alanlice_v2/chatlist/chatlist.dart';
+import 'package:alanlice_v2/controller/HomeListViewController.dart';
 import 'package:alanlice_v2/controller/pageController.dart';
 import 'package:alanlice_v2/home/home.dart';
+
 import 'package:alanlice_v2/setting/setting.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-void main() {
+import 'package:firebase_core/firebase_core.dart';
+
+import 'firebase_options.dart';
+//import 'firebase_options.dart';
+
+void main() async {
+  //await initializeDefault();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
   runApp(const MyApp());
 }
 
+
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +31,7 @@ class MyApp extends StatelessWidget {
       title: 'Alanlice v0.2',
       initialBinding: BindingsBuilder(() {
         Get.put(PagesController());
+        Get.put(HomeListViewController());
       }),
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -74,6 +88,6 @@ class BtmNaviBar extends StatelessWidget {
             activeIcon: Icon(Icons.settings, color: Colors.blue),
           ),
         ]);
-    throw UnimplementedError();
+    //throw UnimplementedError();
   }
 }
