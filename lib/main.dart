@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:alanlice_v2/chatlist/chatlist.dart';
 import 'package:alanlice_v2/controller/HomeListViewController.dart';
 import 'package:alanlice_v2/controller/pageController.dart';
@@ -8,9 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:firebase_core/firebase_core.dart';
-
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'firebase_options.dart';
-//import 'firebase_options.dart';
 
 void main() async {
   //await initializeDefault();
@@ -24,6 +25,10 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  static FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+  static FirebaseAnalyticsObserver observer =
+  FirebaseAnalyticsObserver(analytics: analytics);
+
 
   @override
   Widget build(BuildContext context) {
@@ -36,15 +41,30 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MainPage(title: 'Alanlice v0.2'),
+      navigatorObservers: <NavigatorObserver>[observer],
+      home: MainPage(title: 'Alanlice v0.2', analytics: analytics, observer: observer,),
     );
   }
 }
 
 class MainPage extends GetView<PagesController> {
-  const MainPage({Key? key, required this.title}) : super(key: key);
+  const MainPage({Key? key, required this.title, required this.analytics, required this.observer}) : super(key: key);
   final String title;
+  final FirebaseAnalytics analytics;
+  final FirebaseAnalyticsObserver observer;
 
+  Future<void> testEvents() async{
+    await analytics.logAppOpen();
+    await analytics.logAddPaymentInfo();
+    await analytics.logEarnVirtualCurrency(
+      virtualCurrencyName: 'bitcoin',
+      value: 345.66,
+    );
+    await analytics.logGenerateLead(
+      currency: 'USD',
+      value: 123.45,
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Obx(() => Scaffold(
@@ -55,13 +75,19 @@ class MainPage extends GetView<PagesController> {
             index: controller.pageIndex.value,
             children: [Home(), Chatlist(), Setting()],
           ),
-          bottomNavigationBar: BtmNaviBar(),
+          bottomNavigationBar: BtmNaviBar(
+          ),
         ));
   }
 }
 
 class BtmNaviBar extends StatelessWidget {
+
+ // BtmNaviBar({Key? key, required this.analytics, required this.observer}) : super(key:key);
+
+
   var controller = Get.find<PagesController>();
+
 
   BtmNaviBar({Key? key}) : super(key: key);
 

@@ -1,41 +1,64 @@
 {
   "project_info": {
-    "project_number": "930059102480",
-    "project_id": "alanlice",
-    "storage_bucket": "alanlice.appspot.com"
+    "project_number": "640816531514",
+    "firebase_url": "https://becoin.firebaseio.com",
+    "project_id": "becoin",
+    "storage_bucket": "becoin.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:930059102480:android:3d2019f1296a2392eb9d95",
+        "mobilesdk_app_id": "1:640816531514:android:61f5532985f6b8ff6ccd03",
         "android_client_info": {
-          "package_name": "com.example.alanlice.alanlice_v2"
+          "package_name": "com.becoin.ykchat"
         }
       },
       "oauth_client": [
         {
-          "client_id": "930059102480-0d43ettf8oa8ag49b78qpdjuebebj8s2.apps.googleusercontent.com",
+          "client_id": "640816531514-j2gqmboh9mop477n2a64b4agq74775ke.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBaYt_KAjgNhPCym2NFyHPvH2najTabzlc"
+          "current_key": "AIzaSyA-2yEy7Xe0770aZhg96u8PT1ScASOgfzU"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "930059102480-0d43ettf8oa8ag49b78qpdjuebebj8s2.apps.googleusercontent.com",
+              "client_id": "640816531514-j2gqmboh9mop477n2a64b4agq74775ke.apps.googleusercontent.com",
               "client_type": 3
-            },
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:640816531514:android:2e5a32ce819972a86ccd03",
+        "android_client_info": {
+          "package_name": "com.example.alanlice.alanlice_v2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "640816531514-j2gqmboh9mop477n2a64b4agq74775ke.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-2yEy7Xe0770aZhg96u8PT1ScASOgfzU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
             {
-              "client_id": "930059102480-kcg9il203c2chok28dh93l8f6jauls2j.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example.alanlice.alanliceV2"
-              }
+              "client_id": "640816531514-j2gqmboh9mop477n2a64b4agq74775ke.apps.googleusercontent.com",
+              "client_type": 3
             }
           ]
         }

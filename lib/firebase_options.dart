@@ -17,7 +17,10 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      return web;
+      throw UnsupportedError(
+        'DefaultFirebaseOptions have not been configured for web - '
+        'you can reconfigure this by running the FlutterFire CLI again.',
+      );
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -46,32 +49,23 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyALxwYjJ7Su0BJaIHxYulsjOvfWJR5lvIQ',
-    appId: '1:930059102480:web:f1b9636b47e7dc83eb9d95',
-    messagingSenderId: '930059102480',
-    projectId: 'alanlice',
-    authDomain: 'alanlice.firebaseapp.com',
-    storageBucket: 'alanlice.appspot.com',
-    measurementId: 'G-2BFLSQLJ5X',
-  );
-
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBaYt_KAjgNhPCym2NFyHPvH2najTabzlc',
-    appId: '1:930059102480:android:3d2019f1296a2392eb9d95',
-    messagingSenderId: '930059102480',
-    projectId: 'alanlice',
-    storageBucket: 'alanlice.appspot.com',
+    apiKey: 'AIzaSyA-2yEy7Xe0770aZhg96u8PT1ScASOgfzU',
+    appId: '1:640816531514:android:2e5a32ce819972a86ccd03',
+    messagingSenderId: '640816531514',
+    projectId: 'becoin',
+    databaseURL: 'https://becoin.firebaseio.com',
+    storageBucket: 'becoin.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAekXGZLIwpepTWy7j6rE19Nrw4vTcXYXc',
-    appId: '1:930059102480:ios:83226e639820bd29eb9d95',
-    messagingSenderId: '930059102480',
-    projectId: 'alanlice',
-    storageBucket: 'alanlice.appspot.com',
-    androidClientId: '930059102480-7g6k1bv8fdl9p52s861v72grvosbmfnu.apps.googleusercontent.com',
-    iosClientId: '930059102480-tnapuf13sbk5qkkqrlpqsqipjo53kj1k.apps.googleusercontent.com',
+    apiKey: 'AIzaSyDLMNVCthychcyVIszLobfkyvWndgQteJQ',
+    appId: '1:640816531514:ios:18fce032fe4db7646ccd03',
+    messagingSenderId: '640816531514',
+    projectId: 'becoin',
+    databaseURL: 'https://becoin.firebaseio.com',
+    storageBucket: 'becoin.appspot.com',
+    iosClientId: '640816531514-3nqlksmnc2trf595f5q8l6mmk6nekjic.apps.googleusercontent.com',
     iosBundleId: 'com.alanlice.alanliceV2',
   );
 }
