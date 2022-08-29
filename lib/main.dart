@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:alanlice_v2/chatlist/chatlist.dart';
 import 'package:alanlice_v2/controller/HomeListViewController.dart';
@@ -16,7 +17,10 @@ import 'firebase_options.dart';
 void main() async {
   //await initializeDefault();
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  log(DefaultFirebaseOptions.currentPlatform.appId);
+  log(DefaultFirebaseOptions.currentPlatform.projectId);
+
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform, name: 'Alanlice');
 
   runApp(const MyApp());
 }
@@ -25,9 +29,9 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  static FirebaseAnalytics analytics = FirebaseAnalytics.instance;
-  static FirebaseAnalyticsObserver observer =
-  FirebaseAnalyticsObserver(analytics: analytics);
+   static FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+   static FirebaseAnalyticsObserver observer =
+   FirebaseAnalyticsObserver(analytics: analytics);
 
 
   @override
@@ -43,28 +47,52 @@ class MyApp extends StatelessWidget {
       ),
       navigatorObservers: <NavigatorObserver>[observer],
       home: MainPage(title: 'Alanlice v0.2', analytics: analytics, observer: observer,),
+      //home: MainPage(title: 'Alanlicev0.2',),
     );
   }
 }
 
 class MainPage extends GetView<PagesController> {
   const MainPage({Key? key, required this.title, required this.analytics, required this.observer}) : super(key: key);
+
+  //const MainPage({Key? key , required this.title}) : super(key:key);
   final String title;
   final FirebaseAnalytics analytics;
   final FirebaseAnalyticsObserver observer;
 
+
+
+
   Future<void> testEvents() async{
-    await analytics.logAppOpen();
-    await analytics.logAddPaymentInfo();
-    await analytics.logEarnVirtualCurrency(
-      virtualCurrencyName: 'bitcoin',
-      value: 345.66,
+    // await analytics.logAppOpen();
+    // await analytics.logAddPaymentInfo();
+    // await analytics.logEarnVirtualCurrency(
+    //   virtualCurrencyName: 'bitcoin',
+    //   value: 345.66,
+    // );
+    // await analytics.logGenerateLead(
+    //   currency: 'USD',
+    //   value: 123.45,
+    // );
+    await analytics.logBeginCheckout(
+        value: 10.0,
+        currency: 'USD',
+        items: [
+          AnalyticsEventItem(
+              itemName: 'Socks',
+              itemId: 'xjw73ndnw',
+              price: 10.0
+          ),
+        ],
+        coupon: '10PERCENTOFF'
     );
-    await analytics.logGenerateLead(
-      currency: 'USD',
-      value: 123.45,
-    );
+    log("analytics log test");
   }
+  testEvent() {
+    // TODO: implement testEvent
+    throw UnimplementedError();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Obx(() => Scaffold(
